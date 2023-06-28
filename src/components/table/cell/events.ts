@@ -1,3 +1,4 @@
+import { Coordinates } from "./coordinates";
 import { Cell } from "./model";
 
 export enum CellEvents {
@@ -6,10 +7,10 @@ export enum CellEvents {
 
 export class CellValueChangedEvent<
   T extends string = "default"
-> extends CustomEvent<Cell<T>> {
-  constructor(cell: Cell<T>) {
+> extends CustomEvent<{ cell: Cell<T>; coordinates: Coordinates }> {
+  constructor(cell: Cell<T>, coordinates: Coordinates) {
     super(CellEvents.valueChanged, {
-      detail: cell,
+      detail: { cell, coordinates },
     });
   }
 }

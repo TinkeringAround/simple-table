@@ -1,5 +1,6 @@
 import { WebComponent } from "../../webcomponent";
 import { createCellStyles, getDynamicCellStyles } from "./cell.styles";
+import { Coordinates } from "./coordinates";
 import { CellValueChangedEvent } from "./events";
 import { Cell, CellAttributes, CellParts } from "./model";
 
@@ -22,12 +23,14 @@ export class CellElement<T extends string = "default"> extends WebComponent {
     return this._cell;
   }
 
-  set coordinates(coordinates: string) {
-    this.setAttribute(CellAttributes.coordinates, coordinates);
+  set coordinates(coordinates: Coordinates) {
+    this.setAttribute(CellAttributes.coordinates, coordinates.toString());
   }
 
   get coordinates() {
-    return this.getAttribute(CellAttributes.coordinates) ?? "";
+    return Coordinates.fromString(
+      this.getAttribute(CellAttributes.coordinates) ?? "-1,-1"
+    );
   }
 
   constructor() {
@@ -46,7 +49,7 @@ export class CellElement<T extends string = "default"> extends WebComponent {
   }
 
   connectedCallback() {
-    this.setAttribute(CellAttributes.coordinates, this.coordinates);
+    this.setAttribute(CellAttributes.coordinates, this.coordinates.toString());
     this.setAttribute("type", this.cell.type);
 
     if (this.cell.part) {
@@ -85,7 +88,7 @@ export class CellElement<T extends string = "default"> extends WebComponent {
       }
     });
 
-    this.dispatchEvent(new CellValueChangedEvent(this.cell));
+    this.dispatchEvent(new CellValueChangedEvent(this.cell, this.coordinates));
   }
 
   static create<T extends string = "default">(
@@ -97,7 +100,7 @@ export class CellElement<T extends string = "default"> extends WebComponent {
       CellElement.tag
     ) as CellElement<T>;
     cellElement.cell = cell;
-    cellElement.coordinates = `${row},${column}`;
+    cellElement.coordinates = new Coordinates(row, column);
 
     return cellElement;
   }

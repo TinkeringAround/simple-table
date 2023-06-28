@@ -1,5 +1,8 @@
 import { WebComponent } from "../webcomponent";
+import { Coordinates } from "./cell/coordinates";
+import { Cell } from "./cell/model";
 import { createCells } from "./elements";
+import { TableCellValueChangedEvent } from "./events";
 import { Row, TableConfig } from "./model";
 import { createTableStyles, getDynamicTableStyles } from "./table.styles";
 
@@ -52,7 +55,15 @@ export class Table<T extends string = "default"> extends WebComponent {
 
   update() {
     this.dynamicStyles.innerHTML = getDynamicTableStyles(this.config);
-    this.table.replaceChildren(...createCells(this.rows));
+    this.table.replaceChildren(
+      ...createCells(this.rows, (cell: Cell<T>, coordinates: Coordinates) =>
+        this.onCellValueChange(cell, coordinates)
+      )
+    );
+  }
+
+  onCellValueChange(cell: Cell<T>, coordinates: Coordinates) {
+    this.dispatchEvent(new TableCellValueChangedEvent(cell, coordinates));
   }
 
   static create<T extends string = "default">(

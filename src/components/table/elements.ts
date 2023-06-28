@@ -1,9 +1,13 @@
 import { CellElement } from "./cell/cell.webcomponent";
+import { Coordinates } from "./cell/coordinates";
 import { CellEvents, CellValueChangedEvent } from "./cell/events";
 import { Cell } from "./cell/model";
 import { Row } from "./model";
 
-export const createCells = <T extends string = "default">(rows: Row<T>[]) => {
+export const createCells = <T extends string = "default">(
+  rows: Row<T>[],
+  onValueChange: (cell: Cell<T>, coordinates: Coordinates) => void = () => {}
+) => {
   const cells: CellElement<T>[] = [];
   rows.forEach((rowCells, x) => {
     rowCells.map((cell, y) => {
@@ -11,9 +15,8 @@ export const createCells = <T extends string = "default">(rows: Row<T>[]) => {
 
       if (cell.editable) {
         cellElement.addEventListener(CellEvents.valueChanged, (event) => {
-          console.log(
-            ((event as CellValueChangedEvent).detail as Cell<T>).value
-          );
+          const { cell, coordinates } = (event as CellValueChangedEvent).detail;
+          onValueChange(cell as Cell<T>, coordinates);
         });
       }
 
