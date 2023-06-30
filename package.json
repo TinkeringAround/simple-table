@@ -2,11 +2,8 @@
   "name": "@TinkeringAround/simple-table",
   "description": "Library containing a simple table webcomponent",
   "author": "Thomas Maier",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "type": "module",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/TinkeringAround/simple-table.git"
