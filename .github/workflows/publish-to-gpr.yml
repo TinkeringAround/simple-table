@@ -28,10 +28,10 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           always-auth: true
-          node-version: 16
-          registry-url: https://npm.pkg.github.com/
+          node-version: 16.x
+          registry-url: 'https://npm.pkg.github.com/'
       - run: yarn
-      - run: cat .npmrc
+      - run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_REGISTRY_AUTH_TOKEN }}" > ~/.npmrc
       - run: yarn publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_REGISTRY_AUTH_TOKEN }}
+          NODE_AUTH_TOKEN: ${{secrets.NPM_REGISTRY_AUTH_TOKEN}}
