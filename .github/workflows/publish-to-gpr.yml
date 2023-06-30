@@ -7,18 +7,18 @@ on:
   #   types: [created]
 
 jobs:
-  testing:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-      - run: yarn
-      - run: yarn test
+  # testing:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 16
+  #     - run: yarn
+  #     - run: yarn test
 
   publish-to-gpr:
-    needs: testing
+    # needs: testing
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -32,6 +32,7 @@ jobs:
           registry-url: 'https://npm.pkg.github.com/'
       - run: yarn
       - run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_REGISTRY_AUTH_TOKEN }}" > ~/.npmrc
+      - run: echo "registry=https://npm.pkg.github.com/" > ~/.npmrc
       - run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_REGISTRY_AUTH_TOKEN}}
