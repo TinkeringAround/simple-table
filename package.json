@@ -1,8 +1,8 @@
 {
-  "name": "simple-table",
+  "name": "@TinkeringAround/simple-table",
   "description": "Library containing a simple table webcomponent",
   "author": "Thomas Maier",
-  "version": "0.0.4",
+  "version": "0.0.1",
   "type": "module",
   "repository": {
     "type": "git",
