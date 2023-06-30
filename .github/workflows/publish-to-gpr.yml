@@ -7,7 +7,7 @@ on:
   #   types: [created]
 
 jobs:
-  build-and-test:
+  testing:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -18,7 +18,7 @@ jobs:
       - run: yarn test
 
   publish-to-gpr:
-    needs: build-and-test
+    needs: testing
     runs-on: ubuntu-latest
     permissions:
       contents: read
