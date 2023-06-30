@@ -1,5 +1,5 @@
 {
-  "name": "@TinkeringAround/simple-table",
+  "name": "simple-table",
   "description": "Library containing a simple table webcomponent",
   "author": "Thomas Maier",
   "version": "0.0.4",
