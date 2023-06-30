@@ -1,7 +1,10 @@
 name: Publish NPM Package to Github Package Registry
 on:
-  release:
-    types: [created]
+  push:
+    branches:
+      - 'main'
+  # release:
+  #   types: [created]
 
 jobs:
   build-and-test:
@@ -28,6 +31,7 @@ jobs:
           node-version: 16
           registry-url: https://npm.pkg.github.com/
       - run: yarn
+      - run: cat .npmrc
       - run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_REGISTRY_AUTH_TOKEN }}
