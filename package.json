@@ -8,6 +8,9 @@
     "type": "git",
     "url": "git+https://github.com/TinkeringAround/simple-table.git"
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "files": [
     "lib/**/*"
   ],
