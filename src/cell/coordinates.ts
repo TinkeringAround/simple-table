@@ -25,7 +25,7 @@ export class Coordinates {
 
   // x and y as "x,y" string
   static fromString(coordinates: string) {
-    const [x, y] = coordinates.split(",");
+    const [x, y] = coordinates.split(',');
     return new Coordinates(Number(x), Number(y));
   }
 

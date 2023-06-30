@@ -1,9 +1,9 @@
 export enum CellAttributes {
-  coordinates = "coordinates",
+  coordinates = 'coordinates',
 }
 
 export enum CellParts {
-  value = "cell-value",
+  value = 'cell-value',
 }
 
 export interface HasSpan {
@@ -11,7 +11,7 @@ export interface HasSpan {
   rowSpan?: string;
 }
 
-export interface Cell<T extends string = "default"> extends HasSpan {
+export interface Cell<T extends string = 'default'> extends HasSpan {
   type: T;
   value?: string;
 

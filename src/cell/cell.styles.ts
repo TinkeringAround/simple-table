@@ -1,6 +1,6 @@
-import { HasSpan, CellParts } from "./model";
+import { HasSpan, CellParts } from './model';
 
-const template = document.createElement("template");
+const template = document.createElement('template');
 template.innerHTML = `
 <style>
 :host {
@@ -28,10 +28,7 @@ export const createCellStyles = () => {
   return template.content.cloneNode(true);
 };
 
-export const getDynamicCellStyles = ({
-  columnSpan = "1",
-  rowSpan = "1",
-}: HasSpan) => `
+export const getDynamicCellStyles = ({ columnSpan = '1', rowSpan = '1' }: HasSpan) => `
 :host {
     grid-column:  span ${columnSpan};
     grid-row: span ${rowSpan};

@@ -1,9 +1,7 @@
-# Webcomponent based Frontend
+# Simple Table
 
-Template for a Webcomponent based Frontend Project with Event Driven Store.
+Library containing a simple table webcomponent.
 
-## Features
-
-- Webcomponent Setup
-- Event Driven Store
-- [Vite](https://vitejs.dev/) as Dev/Build Engine
+- Customizable
+- editable cells
+- powered by CSS Grid
