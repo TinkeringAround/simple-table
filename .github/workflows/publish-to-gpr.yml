@@ -28,6 +28,6 @@ jobs:
           node-version: 16.x
           registry-url: 'https://npm.pkg.github.com/'
       - run: yarn
-      - run: yarn publish --new-version ${{github.ref_type}}
+      - run: yarn publish --new-version ${{github.ref}}
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_REGISTRY_AUTH_TOKEN}}
