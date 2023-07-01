@@ -1,4 +1,4 @@
-name: Publish NPM Package to Github Package Registry
+name: Build and Publish NPM Package to Github Package Registry
 on:
   release:
     types: [created]
