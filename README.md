@@ -8,4 +8,8 @@ Library containing a simple table webcomponent.
 
 # Roadmap
 
--[] Add Testing with Jest
+- [ ] Add Testing with Jest
+
+# Resources
+
+- [Release NPM Package](https://itnext.io/step-by-step-building-and-publishing-an-npm-typescript-package-44fe7164964c)
