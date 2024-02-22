@@ -7,10 +7,14 @@ template.innerHTML = `
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     grid-template-rows: minmax(0, 1fr);
+
+    box-sizing: border-box;
 }
 
 table {
     display: grid;
+
+    box-sizing: inherit;
 }
 </style>`;
 

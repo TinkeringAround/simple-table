@@ -1,5 +1,4 @@
-import { Coordinates } from '../cell/coordinates';
-import { Cell } from '../cell/model';
+import { Coordinates, Cell } from '../cell';
 
 export enum TableEvents {
   cellValueChanged = '[TABLE] Cell Value Changed',

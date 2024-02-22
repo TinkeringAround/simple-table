@@ -1,0 +1,24 @@
+:root {
+  --light: rgb(242, 242, 250);
+  --medium: rgb(164, 165, 184);
+  --blue: rgb(36, 28, 194);
+}
+
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+html,
+body {
+  margin: 0;
+}
+
+body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+
+  padding: 1rem;
+
+  box-sizing: border-box;
+}

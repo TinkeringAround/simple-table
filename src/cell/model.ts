@@ -1,5 +1,7 @@
 export enum CellAttributes {
   coordinates = 'coordinates',
+  isFirstInRow = 'isFirstInRow',
+  isLastInRow = 'isLastInRow',
 }
 
 export enum CellParts {

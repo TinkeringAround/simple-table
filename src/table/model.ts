@@ -1,4 +1,4 @@
-import { Cell } from '../cell/model';
+import { Cell } from '../cell';
 
 export interface TableConfig {
   columns: string[];

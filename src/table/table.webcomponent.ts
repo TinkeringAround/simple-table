@@ -1,5 +1,4 @@
-import { Coordinates } from '../cell/coordinates';
-import { Cell } from '../cell/model';
+import { Coordinates, Cell } from '../cell';
 import { createCells } from './elements';
 import { TableCellValueChangedEvent } from './events';
 import { Row, TableConfig } from './model';

@@ -1,7 +1,4 @@
-import { CellElement } from '../cell/cell.webcomponent';
-import { Coordinates } from '../cell/coordinates';
-import { CellEvents, CellValueChangedEvent } from '../cell/events';
-import { Cell } from '../cell/model';
+import { Cell, CellElement, Coordinates, CellEvents, CellValueChangedEvent } from '../cell';
 import { Row } from './model';
 
 export const createCells = <T extends string = 'default'>(
@@ -11,7 +8,7 @@ export const createCells = <T extends string = 'default'>(
   const cells: CellElement<T>[] = [];
   rows.forEach((rowCells, x) => {
     rowCells.map((rowCell, y) => {
-      const cellElement = CellElement.create<T>(rowCell, x, y);
+      const cellElement = CellElement.create<T>(rowCell, x, y, y === rowCells.length - 1);
 
       if (rowCell.editable && onValueChange) {
         cellElement.addEventListener(CellEvents.valueChanged, (event) => {

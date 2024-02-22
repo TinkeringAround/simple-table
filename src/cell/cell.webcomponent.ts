@@ -28,6 +28,22 @@ export class CellElement<T extends string = 'default'> extends HTMLElement {
     return Coordinates.fromString(this.getAttribute(CellAttributes.coordinates) ?? '-1,-1');
   }
 
+  set isLastInRow(isLastInRow: boolean) {
+    if (isLastInRow) {
+      this.setAttribute(CellAttributes.isLastInRow, '');
+    } else {
+      this.removeAttribute(CellAttributes.isLastInRow);
+    }
+  }
+
+  get isLastInRow() {
+    return !!this.getAttribute(CellAttributes.isLastInRow);
+  }
+
+  get isFirstInRow() {
+    return this.coordinates.y === 0;
+  }
+
   constructor() {
     super();
 
@@ -45,6 +61,14 @@ export class CellElement<T extends string = 'default'> extends HTMLElement {
 
     if (this.cell.part) {
       this.setAttribute('part', this.cell.part);
+    }
+
+    if (this.isFirstInRow) {
+      this.setAttribute(CellAttributes.isFirstInRow, '');
+    }
+
+    if (this.isLastInRow) {
+      this.setAttribute(CellAttributes.isLastInRow, '');
     }
 
     this.update();
@@ -82,10 +106,11 @@ export class CellElement<T extends string = 'default'> extends HTMLElement {
     this.dispatchEvent(new CellValueChangedEvent(this.cell, this.coordinates));
   }
 
-  static create<T extends string = 'default'>(cell: Cell<T>, row: number, column: number) {
+  static create<T extends string = 'default'>(cell: Cell<T>, row: number, column: number, isLastInRow: boolean) {
     const cellElement = document.createElement(CellElement.tag) as CellElement<T>;
     cellElement.cell = cell;
     cellElement.coordinates = new Coordinates(row, column);
+    cellElement.isLastInRow = isLastInRow;
 
     return cellElement;
   }

@@ -6,7 +6,7 @@ export class Coordinates {
     this._x = x;
   }
 
-  get x() {
+  get x(): number {
     return this._x;
   }
 
@@ -14,22 +14,22 @@ export class Coordinates {
     this._y = y;
   }
 
-  get y() {
+  get y(): number {
     return this._y;
   }
 
   constructor(x: number, y: number) {
-    this._x = x;
+    this.x = x;
     this.y = y;
   }
 
   // x and y as "x,y" string
-  static fromString(coordinates: string) {
+  static fromString(coordinates: string): Coordinates {
     const [x, y] = coordinates.split(',');
     return new Coordinates(Number(x), Number(y));
   }
 
-  toString() {
+  toString(): string {
     return `${this.x},${this.y}`;
   }
 }
