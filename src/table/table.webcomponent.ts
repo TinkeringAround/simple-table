@@ -18,7 +18,7 @@ export class Table<T extends string = 'default'> extends HTMLElement {
   private _rows: Row<T>[] = [];
   private _customStyles: string = '';
 
-  public set config(config: TableConfig) {
+  private set config(config: TableConfig) {
     this._config = config;
   }
 
@@ -26,7 +26,7 @@ export class Table<T extends string = 'default'> extends HTMLElement {
     return this._config;
   }
 
-  public set rows(rows: Row<T>[]) {
+  private set rows(rows: Row<T>[]) {
     this._rows = [...rows];
   }
 
@@ -34,7 +34,7 @@ export class Table<T extends string = 'default'> extends HTMLElement {
     return this._rows;
   }
 
-  public set customStyles(customStyles: string) {
+  private set customStyles(customStyles: string) {
     this._customStyles = customStyles;
   }
 
@@ -60,6 +60,11 @@ export class Table<T extends string = 'default'> extends HTMLElement {
   public connectedCallback() {
     this.restyle();
     this.redraw();
+  }
+
+  public updateConfig(config: TableConfig) {
+    this.config = config;
+    this.restyle();
   }
 
   public updateModel(rows: Row<T>[]) {
