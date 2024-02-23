@@ -2,8 +2,10 @@
   "name": "@TinkeringAround/simple-table",
   "description": "Library containing a simple table webcomponent",
   "author": "Thomas Maier",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
+  "main": "lib",
+  "exports": "./lib/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/TinkeringAround/simple-table.git"
