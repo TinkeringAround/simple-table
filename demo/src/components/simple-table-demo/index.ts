@@ -1,8 +1,10 @@
-import { CellAttributes, CellElement, Table } from '../../../../src';
+import { CellAttributes, CellElement, Table, TableCellClickedEvent, TableEvents } from '../../../../src';
 import { createStyles } from './style';
 
 export default class SimpleTableDemo extends HTMLElement {
   static readonly tag = 'simple-table-demo';
+
+  readonly table: Table<'default' | 'header'>;
 
   static define() {
     customElements.define(SimpleTableDemo.tag, SimpleTableDemo);
@@ -11,51 +13,51 @@ export default class SimpleTableDemo extends HTMLElement {
   constructor() {
     super();
 
-    const table = document.createElement(Table.tag) as Table<'default' | 'header'>;
-    table.config = {
-      columns: ['1fr', '1fr', '1fr', '1fr'],
-      rows: ['min-content', '1fr', '1fr', '1fr'],
-    };
-    table.rows = [
+    this.table = Table.create<'default' | 'header'>(
+      {
+        columns: ['1fr', '1fr', '1fr', '1fr'],
+        rows: ['min-content', '1fr', '1fr', '1fr'],
+      },
       [
-        {
-          type: 'header',
-          value: 'Colum 1',
-        },
-        {
-          type: 'header',
-          value: 'Colum 2',
-        },
-        {
-          type: 'header',
-          value: 'Colum 3',
-        },
-        {
-          type: 'header',
-          value: 'Colum 4',
-        },
-      ],
-      [
-        {
-          type: 'default',
-          value: '11 & Editable & Span 4 Columns',
-          editable: true,
-          columnSpan: '4',
-          part: 'columnspan',
-        },
-      ],
-      [
-        { type: 'default', value: '21 & part "blue" = blue background', part: 'blue', columnSpan: '3' },
+        [
+          {
+            type: 'header',
+            value: 'Column 1',
+          },
+          {
+            type: 'header',
+            value: 'Column 2',
+          },
+          {
+            type: 'header',
+            value: 'Column 3',
+          },
+          {
+            type: 'header',
+            value: 'Column 4',
+          },
+        ],
+        [
+          {
+            type: 'default',
+            value: '10 & Editable & Span 4 Columns',
+            editable: true,
+            columnSpan: '4',
+            part: 'columnspan',
+          },
+        ],
+        [
+          { type: 'default', value: '20 & part "blue" = blue background', part: 'blue', columnSpan: '3' },
 
-        { type: 'default', value: '22', rowSpan: '2', part: 'rowspan' },
+          { type: 'default', value: '21 & clickable', rowSpan: '2', part: 'rowspan', clickable: true },
+        ],
+        [
+          { type: 'default', value: '30' },
+          { type: 'default', value: '31' },
+          { type: 'default', value: '32' },
+        ],
       ],
-      [
-        { type: 'default', value: '31' },
-        { type: 'default', value: '32' },
-        { type: 'default', value: '33' },
-      ],
-    ];
-    table.customStyles = `
+      `
     table {
       gap: 1rem 0;
     }
@@ -106,8 +108,14 @@ export default class SimpleTableDemo extends HTMLElement {
     [part="rowspan"] {
       background: green;
     }
-    `;
+    `,
+    );
 
-    this.attachShadow({ mode: 'closed' }).append(createStyles(), table);
+    this.table.addEventListener(TableEvents.cellClicked, (event) => {
+      const { cell, coordinates } = (event as TableCellClickedEvent).detail;
+
+      window.alert(['CLICKED CELL', coordinates.toString(), JSON.stringify(cell)].join('\n'));
+    });
+    this.attachShadow({ mode: 'closed' }).append(createStyles(), this.table);
   }
 }

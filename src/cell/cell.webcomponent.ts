@@ -75,18 +75,22 @@ export class CellElement<T extends string = 'default'> extends HTMLElement {
   }
 
   update() {
-    const { value, editable } = this.cell;
+    const { value, editable, clickable } = this.cell;
 
     if (value) {
       this.spanElement.textContent = value;
     }
 
     if (editable) {
-      this.spanElement.setAttribute('contenteditable', '');
+      this.spanElement.setAttribute('editable', '');
       this.mutationObserver.observe(this.spanElement, {
         characterData: true,
         subtree: true,
       });
+    }
+
+    if (clickable) {
+      this.spanElement.setAttribute('clickable', '');
     }
 
     this.dynamicStyles.innerHTML = getDynamicCellStyles(this.cell);

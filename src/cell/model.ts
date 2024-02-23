@@ -17,7 +17,10 @@ export interface Cell<T extends string = 'default'> extends HasSpan {
   type: T;
   value?: string;
 
+  // Interaction
+  clickable?: boolean;
   editable?: boolean;
 
+  // Styling
   part?: string;
 }

@@ -36,8 +36,12 @@ span[part="${CellParts.value}"] {
     cursor: default;
 }
 
-span[part="${CellParts.value}"][contenteditable] {
+span[part="${CellParts.value}"][editable] {
     cursor: text;
+}
+
+span[part="${CellParts.value}"][clickable] {
+    cursor: pointer;
 }
 </style>`;
 

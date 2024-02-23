@@ -1,6 +1,6 @@
 import { Coordinates, Cell } from '../cell';
 import { createCells } from './elements';
-import { TableCellValueChangedEvent } from './events';
+import { TableCellClickedEvent, TableCellValueChangedEvent } from './events';
 import { Row, TableConfig } from './model';
 import { createTableStyles, getDynamicTableStyles } from './table.styles';
 
@@ -84,18 +84,30 @@ export class Table<T extends string = 'default'> extends HTMLElement {
 
   private redraw() {
     this.table.replaceChildren(
-      ...createCells(this.rows, (cell: Cell<T>, coordinates: Coordinates) => this.onCellValueChange(cell, coordinates)),
+      ...createCells(
+        this.rows,
+        (cell: Cell<T>, coordinates: Coordinates) => this.onCellClick(cell, coordinates),
+        (cell: Cell<T>, coordinates: Coordinates) => this.onCellValueChange(cell, coordinates),
+      ),
     );
+  }
+
+  private onCellClick(cell: Cell<T>, coordinates: Coordinates) {
+    this.dispatchEvent(new TableCellClickedEvent(cell, coordinates));
   }
 
   private onCellValueChange(cell: Cell<T>, coordinates: Coordinates) {
     this.dispatchEvent(new TableCellValueChangedEvent(cell, coordinates));
   }
 
-  static create<T extends string = 'default'>(config: TableConfig, rows: Row<T>[] = []) {
+  static create<T extends string = 'default'>(config: TableConfig, rows: Row<T>[] = [], customStyles?: string) {
     const table = document.createElement(Table.tag) as Table<T>;
     table.config = config;
     table.rows = rows;
+
+    if (customStyles) {
+      table.customStyles = customStyles;
+    }
 
     return table;
   }
