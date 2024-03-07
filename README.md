@@ -1,15 +1,17 @@
 # Simple Table
 
-Library containing a simple table webcomponent.
+`Library containing a simple table webcomponent. Pure JavaScript.`
 
 - Customizable
-- editable cells
-- powered by CSS Grid
+- Editable Cells
+- Sticky Areas
+- Spanning Cells
+- Powered by CSS Grid
 
 # Roadmap
 
-- [ ] Add Testing with Jest
+- [ ] Add Jest
 
 # Resources
 
-- [Release NPM Package](https://itnext.io/step-by-step-building-and-publishing-an-npm-typescript-package-44fe7164964c)
+- [Releasing NPM Package via Github Actions](https://itnext.io/step-by-step-building-and-publishing-an-npm-typescript-package-44fe7164964c)
