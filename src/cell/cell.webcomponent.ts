@@ -82,7 +82,7 @@ export class CellElement<T extends string = 'default'> extends HTMLElement {
     }
 
     if (editable) {
-      this.spanElement.setAttribute('editable', '');
+      this.spanElement.setAttribute('contenteditable', '');
       this.mutationObserver.observe(this.spanElement, {
         characterData: true,
         subtree: true,

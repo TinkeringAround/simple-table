@@ -36,7 +36,7 @@ span[part="${CellParts.value}"] {
     cursor: default;
 }
 
-span[part="${CellParts.value}"][editable] {
+span[part="${CellParts.value}"][contenteditable] {
     cursor: text;
 }
 
@@ -46,7 +46,7 @@ span[part="${CellParts.value}"][clickable] {
 </style>`;
 
 export const createCellStyles = () => {
-  return template.content.cloneNode(true);
+    return template.content.cloneNode(true);
 };
 
 export const getDynamicCellStyles = ({ columnSpan = '1', rowSpan = '1' }: HasSpan) => `
