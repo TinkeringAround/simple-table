@@ -116,6 +116,13 @@ export default class SimpleTableDemo extends HTMLElement {
 
       window.alert(['CLICKED CELL', coordinates.toString(), JSON.stringify(cell)].join('\n'));
     });
+
+    this.table.addEventListener(TableEvents.cellValueChanged, (event) => {
+      const { cell, coordinates } = (event as TableCellClickedEvent).detail;
+
+      window.alert(['CELL VALUE CHANGED', coordinates.toString(), JSON.stringify(cell)].join('\n'));
+    });
+
     this.attachShadow({ mode: 'closed' }).append(createStyles(), this.table);
   }
 }
