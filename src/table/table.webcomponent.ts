@@ -78,8 +78,6 @@ export class Table<T extends string = 'default'> extends HTMLElement {
       }
     });
 
-    console.log(this.table, this.table.children, oldChild);
-
     if (oldChild) {
       this.table.replaceChild(createCell(cell, coordinates, (oldChild as CellElement<T>).isLastInRow,
         (cell: Cell<T>, coordinates: Coordinates) => this.onCellClick(cell, coordinates),

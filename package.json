@@ -2,7 +2,7 @@
   "name": "@TinkeringAround/simple-table",
   "description": "Library containing a simple table webcomponent",
   "author": "Thomas Maier",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "type": "module",
   "main": "lib",
   "exports": "./lib/index.js",
