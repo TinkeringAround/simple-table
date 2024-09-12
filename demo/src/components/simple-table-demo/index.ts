@@ -115,6 +115,8 @@ export default class SimpleTableDemo extends HTMLElement {
       const { cell, coordinates } = (event as TableCellClickedEvent).detail;
 
       window.alert(['CLICKED CELL', coordinates.toString(), JSON.stringify(cell)].join('\n'));
+
+      this.table.updateCell({ ...cell, value: "I WAS CLICKED!" }, coordinates);
     });
 
     this.table.addEventListener(TableEvents.cellValueChanged, (event) => {

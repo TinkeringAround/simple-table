@@ -1,5 +1,5 @@
-import { Coordinates, Cell } from '../cell';
-import { createCells } from './elements';
+import { Coordinates, Cell, CellElement } from '../cell';
+import { createCell, createCells } from './elements';
 import { TableCellClickedEvent, TableCellValueChangedEvent } from './events';
 import { Row, TableConfig } from './model';
 import { createTableStyles, getDynamicTableStyles } from './table.styles';
@@ -65,6 +65,28 @@ export class Table<T extends string = 'default'> extends HTMLElement {
   public updateConfig(config: TableConfig) {
     this.config = config;
     this.restyle();
+  }
+
+  public updateCell(cell: Cell<T>, coordinates: Coordinates) {
+    this.rows[coordinates.x][coordinates.y] = { ...cell };
+
+    const oldChild = ([...this.table.childNodes]).find((cellElement) => {
+      const { x, y } = (cellElement as CellElement<T>).coordinates;
+
+      if (coordinates.x === x && coordinates.y === y) {
+        return cellElement;
+      }
+    });
+
+    console.log(this.table, this.table.children, oldChild);
+
+    if (oldChild) {
+      this.table.replaceChild(createCell(cell, coordinates, (oldChild as CellElement<T>).isLastInRow,
+        (cell: Cell<T>, coordinates: Coordinates) => this.onCellClick(cell, coordinates),
+        (cell: Cell<T>, coordinates: Coordinates) => this.onCellValueChange(cell, coordinates)),
+        oldChild
+      );
+    }
   }
 
   public updateModel(rows: Row<T>[]) {
