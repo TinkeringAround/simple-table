@@ -28,8 +28,7 @@ span[part="${CellParts.value}"] {
     font-size: inherit;
     font-weight: inherit;
     font-style: inherit;
-    border-radius: inherit;
-    border: inherit;
+    border: none;
     outline: inherit;
 
     transition: inherit;
@@ -46,7 +45,7 @@ span[part="${CellParts.value}"][clickable] {
 </style>`;
 
 export const createCellStyles = () => {
-  return template.content.cloneNode(true);
+    return template.content.cloneNode(true);
 };
 
 export const getDynamicCellStyles = ({ columnSpan = '1', rowSpan = '1' }: HasSpan) => `
