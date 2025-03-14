@@ -1,8 +1,8 @@
 {
   "name": "@TinkeringAround/simple-table",
-  "description": "Library containing a simple table webcomponent",
+  "description": "Library containing a simple table webcomponent in vanilla JS",
   "author": "Thomas Maier",
-  "version": "1.2.2",
+  "version": "1.3.0",
   "type": "module",
   "main": "lib",
   "exports": "./lib/index.js",
@@ -26,8 +26,8 @@
     "postversion": "git push && git push --tags"
   },
   "devDependencies": {
-    "prettier": "3.2.5",
-    "typescript": "5.3.3"
+    "prettier": "3.5.3",
+    "typescript": "5.8.2"
   },
   "license": "MIT"
 }

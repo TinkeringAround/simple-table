@@ -1,5 +1,5 @@
-import { Table } from './table/table.webcomponent';
-import { CellElement } from './cell/cell.webcomponent';
+import { Table } from './table/table';
+import { CellElement } from './cell/cell';
 
 export * from './table';
 export * from './cell';

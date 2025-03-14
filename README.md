@@ -8,10 +8,6 @@
 - Spanning Cells
 - Powered by CSS Grid
 
-# Roadmap
-
-- [ ] Add Jest
-
 # Resources
 
 - [Releasing NPM Package via Github Actions](https://itnext.io/step-by-step-building-and-publishing-an-npm-typescript-package-44fe7164964c)
